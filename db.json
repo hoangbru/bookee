@@ -1,0 +1,123 @@
+{
+  "products": [
+    {
+      "name": "Basas Workaday - High Top",
+      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691317730/portfolio/c8dko9gf4b7g1xcge677.jpg",
+      "price": "650000",
+      "desc": "Black",
+      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas NE,\nOutsole: Rubber",
+      "categoryId": 1,
+      "id": 1
+    },
+    {
+      "name": "BASAS WORKADAY - LOW TOP - REAL TEAL",
+      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691317710/portfolio/m8uzrx9rnotepwommjiy.jpg",
+      "price": "580000",
+      "desc": "Real teal",
+      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas NE,\nOutsole: Rubber",
+      "categoryId": 1,
+      "id": 2
+    },
+    {
+      "name": "VINTAS JAZICO - LOW TOP - ROYAL WHITE",
+      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691322225/portfolio/vcffefwd6rjnuqfdwmar.jpg",
+      "price": "720.000",
+      "desc": "ROYAL WHITE",
+      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas/Leather,\nOutsole: Rubber",
+      "categoryId": 2,
+      "sizeIds": [
+        3,
+        2,
+        1,
+        4,
+        7,
+        8,
+        5,
+        6
+      ],
+      "id": 3
+    },
+    {
+      "name": "URBAS CORLURAY MIX - LOW TOP",
+      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691337082/portfolio/pexyog6ffvv0qh5gqoyo.jpg",
+      "price": "610000",
+      "desc": "Corluray Mix",
+      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Corduroy,\nOutsole: Rubber",
+      "sizeIds": [
+        1,
+        2,
+        3
+      ],
+      "categoryId": 3,
+      "id": 4
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Basas"
+    },
+    {
+      "name": "Vintas",
+      "id": 2
+    },
+    {
+      "name": "Urbas",
+      "id": 3
+    }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "size": 36,
+      "inStock": false
+    },
+    {
+      "id": 2,
+      "size": 37,
+      "inStock": true
+    },
+    {
+      "id": 3,
+      "size": 38,
+      "inStock": true
+    },
+    {
+      "id": 4,
+      "size": 39,
+      "inStock": true
+    },
+    {
+      "id": 5,
+      "size": 40,
+      "inStock": true
+    },
+    {
+      "id": 6,
+      "size": 41,
+      "inStock": true
+    },
+    {
+      "id": 7,
+      "size": 42,
+      "inStock": true
+    },
+    {
+      "id": 8,
+      "size": 43,
+      "inStock": true
+    }
+  ],
+  "orders": [
+    
+  ],
+  "users": [
+    {
+      "email": "phuongngu@gmail.com",
+      "password": "$2a$10$bXpjwNl6/e2rSDF2/yyjrOal551f2QX5k/XEc3gtjLka99f/wsvei",
+      "username": "phuong ngu",
+      "role": "customer",
+      "id": 1
+    }
+  ]
+}

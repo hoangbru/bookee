@@ -1,0 +1,72 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+#root {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* admin */
+/* .image-upload {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.image-upload label {
+  display: block;
+  padding: 30px 30px;
+}
+i {
+  font-size: large;
+  padding: 2px 0px;
+}
+
+.image-upload input[type="file"] {
+  position: absolute;
+  font-size: 999px;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  left: 0;
+  top: 0;
+}
+
+.image-upload:hover {
+  background-color: #ccc;
+}
+
+.image-upload i {
+  margin-right: 10px;
+}
+*/
+.image {
+  width: 250px;
+  height: 100px;
+  object-fit: cover;
+}
+#preview-image {
+  max-height: 90px;
+  border-radius: 5px;
+}

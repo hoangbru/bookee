@@ -7,6 +7,8 @@ import NoData from "../../../components/NoData";
 import FormAddCategory from "../../../components/admin/categories/FormAddCategory";
 import ModalConfirm from "../../../components/admin/ModalConfirm";
 import ModalUpdate from "../../../components/admin/categories/ModalUpdate";
+import { Heading } from "../../../components/admin/ui/Heading";
+import Separator from "../../../components/admin/ui/Separator";
 
 const CategoryList = () => {
   const [openModalDelete, setOpenModalDelete] = useState<boolean>(false);
@@ -14,7 +16,7 @@ const CategoryList = () => {
   const [modalData, setModalData] = useState<ICategory>();
 
   const handleOpenModalDelete = (data: ICategory) => {
-    setModalData(data)
+    setModalData(data);
     setOpenModalDelete(true);
   };
 
@@ -23,7 +25,7 @@ const CategoryList = () => {
   };
 
   const handleOpenModalUpdate = (data: ICategory) => {
-    setModalData(data)
+    setModalData(data);
     setOpenModalUpdate(true);
   };
 
@@ -81,18 +83,15 @@ const CategoryList = () => {
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="flex justify-center items-center gap-2 text-3xl font-bold tracking-tight">
-              <span>Quản lý danh mục</span>
-            </h2>
+            <Heading title="Quản lý danh mục" />
           </div>
         </div>
 
-        <hr className="my-10" />
+        <Separator />
 
-        {/* form add */}
         <FormAddCategory />
 
-        <hr className="my-10" />
+        <Separator />
 
         <div>
           <div className="flex justify-between items-center">

@@ -26,7 +26,7 @@ import {
 import { PrivateRoute } from "./helpers/protectionRoute";
 
 const user = JSON.parse(localStorage?.getItem("user") as string);
-const isAuth = user?.information?.role === "ADMIN" ? true : false;
+const isAuth = user?.information?.role == "ADMIN" ? true : false;
 
 export const router = createBrowserRouter([
   {

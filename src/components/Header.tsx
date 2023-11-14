@@ -268,6 +268,21 @@ export default function Header() {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      {user?.information?.role == "ADMIN" && (
+                        <Menu.Item>
+                          {({ active }: any) => (
+                            <Link
+                              to={`/admin`}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Trang quản trị
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
                       <Menu.Item>
                         {({ active }: any) => (
                           <Link
@@ -281,19 +296,21 @@ export default function Header() {
                           </Link>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
-                        {({ active }: any) => (
-                          <Link
-                            to="/myorder"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Theo dõi đơn hàng
-                          </Link>
-                        )}
-                      </Menu.Item>
+                      {user?.information?.role == "USER" && (
+                        <Menu.Item>
+                          {({ active }: any) => (
+                            <Link
+                              to="/myorder"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Theo dõi đơn hàng
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
                       <Menu.Item>
                         {({ active }: any) => (
                           <Menu.Button
@@ -448,10 +465,7 @@ export default function Header() {
                                 <>
                                   {carts.map((product: any, index: any) => {
                                     return (
-                                      <li
-                                        key={index}
-                                        className="flex py-6"
-                                      >
+                                      <li key={index} className="flex py-6">
                                         <Link
                                           to={`/product/${product.id}`}
                                           onClick={() => setOpenCart(false)}

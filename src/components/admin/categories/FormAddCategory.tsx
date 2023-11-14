@@ -1,7 +1,8 @@
 import { useForm } from "react-hook-form";
-import { useAddCategoryMutation } from "../../../api/category";
 import toast from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
+import { useAddCategoryMutation } from "../../../api/category";
 
 const FormAddCategory = () => {
   const {

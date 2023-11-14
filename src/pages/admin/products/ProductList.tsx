@@ -6,9 +6,17 @@ import ModalConfirm from "../../../components/admin/ModalConfirm";
 import { useGetAllProductsQuery } from "../../../api/product";
 import { IProduct } from "../../../interfaces/product";
 import { Link } from "react-router-dom";
+import { Heading } from "../../../components/admin/ui/Heading";
+import Separator from "../../../components/admin/ui/Separator";
 
 const ProductList = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
+  const [modalData, setModalData] = useState<IProduct>();
+
+  const handleOpenModalDelete = (data: IProduct) => {
+    setModalData(data);
+    setOpenModal(true);
+  };
 
   const closeModal = () => {
     setOpenModal(false);
@@ -19,8 +27,8 @@ const ProductList = () => {
     `?page=${currentPage}`
   );
 
-  const [categories, setProducts] = useState(productsApi);
-  const [categoriesList, setProductsList] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState(productsApi);
+  const [productsList, setProductsList] = useState<IProduct[]>([]);
 
   useEffect(() => {
     setCurrentPage(productsApi?.result.currentPage);
@@ -35,7 +43,7 @@ const ProductList = () => {
   }, [productsApi?.data]);
 
   const totalPages = Math.ceil(
-    categories?.result?.total / categories?.result?.itemPerPage
+    products?.result?.total / products?.result?.itemPerPage
   );
 
   const pageList = [];
@@ -64,18 +72,21 @@ const ProductList = () => {
       <div className="flex-1 space-y-4 p-8 pt-6">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="flex justify-center items-center gap-2 text-3xl font-bold tracking-tight">
-              <span>Quản lý sản phẩm</span>
-            </h2>
+            <Heading title="Quản lý sản phẩm" />
           </div>
           <div>
-            <Link to="/admin/products/add" className="flex justify-center items-center gap-2 text-3xl font-bold tracking-tight">
-              <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-black text-white ml-auto">Thêm sản phẩm</button>
+            <Link
+              to="/admin/products/add"
+              className="flex justify-center items-center gap-2 text-3xl font-bold tracking-tight"
+            >
+              <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 bg-black text-white ml-auto">
+                Thêm sản phẩm
+              </button>
             </Link>
           </div>
         </div>
 
-        <hr className="my-10" />
+        <Separator />
 
         <div>
           <div className="flex justify-between items-center">
@@ -115,6 +126,9 @@ const ProductList = () => {
                       Tác giả
                     </th>
                     <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
+                      Danh mục
+                    </th>
+                    <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
                       Ngày tạo
                     </th>
                     <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
@@ -131,14 +145,14 @@ const ProductList = () => {
                     </tr>
                   ) : (
                     <>
-                      {(!categoriesList || categoriesList.length == 0) && (
+                      {(!productsList || productsList.length == 0) && (
                         <tr className="border-0">
                           <td colSpan={6}>
                             <NoData />
                           </td>
                         </tr>
                       )}
-                      {categoriesList?.map((item: IProduct) => {
+                      {productsList?.map((item: IProduct) => {
                         return (
                           <tr className="border-0" key={item.id}>
                             <td className="p-4 align-middle">{item.title}</td>
@@ -158,6 +172,9 @@ const ProductList = () => {
                             </td>
                             <td className="p-4 align-middle">{item.author}</td>
                             <td className="p-4 align-middle">
+                              {item.category?.name}
+                            </td>
+                            <td className="p-4 align-middle">
                               <FormattedDate
                                 value={item.createdAt}
                                 year="numeric"
@@ -166,11 +183,11 @@ const ProductList = () => {
                               />
                             </td>
                             <td className="p-4 align-middle">
-                              <button className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground hover:bg-gray-200 p-2 h-8 w-8">
+                              <Link to={`/admin/products/${item.id}/edit`} className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground hover:bg-gray-200 p-2 h-8 w-8">
                                 <i className="bx bx-edit text-base"></i>
-                              </button>
+                              </Link>
                               <button
-                                onClick={() => setOpenModal(true)}
+                                onClick={() => handleOpenModalDelete(item)}
                                 className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground hover:bg-gray-200 p-2 h-8 w-8"
                               >
                                 <i className="bx bx-trash-alt text-base"></i>
@@ -179,7 +196,7 @@ const ProductList = () => {
                                 isOpen={openModal}
                                 onClose={closeModal}
                                 title="Cảnh báo"
-                                value={item}
+                                value={modalData}
                                 type="product"
                               />
                             </td>

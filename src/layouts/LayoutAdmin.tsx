@@ -5,6 +5,7 @@ const LayoutAdmin = () => {
     { label: "Bảng điều khiển", url: "/admin/dashboard", active: true },
     { label: "Danh mục", url: "/admin/categories/list", active: false },
     { label: "Sản phẩm", url: "/admin/products/list", active: false },
+    { label: "Đơn hàng", url: "/admin/orders/list", active: false },
     { label: "Người dùng", url: "/admin/users/list", active: false },
   ];
 

@@ -1,3 +1,5 @@
+import { ICategory } from "./category";
+
 export interface IProduct {
   id?: number;
   title?: string;
@@ -10,7 +12,7 @@ export interface IProduct {
   reviews?: [];
   promotion?: string;
   promotionId?: string;
-  category?: string;
+  category?: ICategory;
   categoryId?: string;
   stock_quantity?: string;
   createdAt?: Date;

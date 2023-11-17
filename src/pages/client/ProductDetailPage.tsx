@@ -11,7 +11,6 @@ import { useAppDispatch } from "../../store/hook";
 import { add } from "../../slices/Cart";
 
 import { useGetProductByIdQuery } from "../../api/product";
-import { FormattedDate } from "react-intl";
 
 const reviews = { href: "#", average: 4, totalCount: 117 };
 
@@ -68,13 +67,7 @@ const ProductDetailPage = () => {
 
                 <div className="mt-4 space-y-6">
                   <p className="text-sm text-gray-700 font-normal">
-                    Ngày phát hành:{" "}
-                    <FormattedDate
-                      year="numeric"
-                      month="long"
-                      day="2-digit"
-                      value={product?.data?.publishedDate}
-                    />
+                    Năm phát hành: {product?.data?.publishedDate}
                   </p>
                 </div>
 
@@ -122,7 +115,7 @@ const ProductDetailPage = () => {
                   type="button"
                   className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   onClick={() => {
-                    dispatch(add({ ...product, quantity: 1 }));
+                    dispatch(add({ ...product?.data, quantity: 1 }));
                     toast.success("Thêm vào giỏ hàng thành công");
                   }}
                 >

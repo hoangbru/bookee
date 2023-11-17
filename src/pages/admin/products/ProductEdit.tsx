@@ -40,6 +40,7 @@ const ProductEdit = () => {
     setValue("title", bookById?.data.title);
     setValue("author", bookById?.data.author);
     setValue("price", bookById?.data.price);
+    setValue("categoryId", bookById?.data.categoryId);
     setValue("publishedDate", bookById?.data.publishedDate);
   }, [setValue, bookById]);
 
@@ -51,11 +52,12 @@ const ProductEdit = () => {
     if (!value.image[0]) {
       updateProduct({
         id: Number(id),
-        title: bookById?.data.title,
+        title: value.title,
         image: bookById?.data.image,
-        author: bookById?.data.author,
-        price: Number(bookById?.data.price),
-        categoryId: Number(bookById?.data.categoryId),
+        author: value.author,
+        price: Number(value.price),
+        categoryId: Number(value.categoryId),
+        publishedDate: value.publishedDate
       })
         .unwrap()
         .then((response: any) => {
@@ -88,6 +90,7 @@ const ProductEdit = () => {
           author: value.author,
           price: Number(value.price),
           categoryId: Number(value.categoryId),
+          publishedDate: value.publishedDate
         })
           .unwrap()
           .then((response: any) => {
@@ -233,7 +236,6 @@ const ProductEdit = () => {
                 <label htmlFor="publishedDate">Ngày phát hành</label>
                 <input
                   id="publishedDate"
-                  type="date"
                   {...register("publishedDate")}
                   placeholder="VD: Nguyễn Nhật Ánh"
                   className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"

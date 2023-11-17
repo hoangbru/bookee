@@ -10,7 +10,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const UserDetail = () => {
   const user = JSON.parse(localStorage?.getItem("user") as string);
 
-  const { data: userById } = useGetUserByIdQuery(user.information.userId);
+  const { data: userById } = useGetUserByIdQuery(user.information?.userId);
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const {

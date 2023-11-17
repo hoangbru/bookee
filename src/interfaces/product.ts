@@ -8,7 +8,7 @@ export interface IProduct {
   publishedDate?: string;
   description?: string;
   price: number;
-  quantity?: number;
+  quantity: number;
   reviews?: [];
   promotion?: string;
   promotionId?: string;

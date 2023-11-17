@@ -207,14 +207,24 @@ const ProductAdd = () => {
                 )}
               </div>
               <div className="space-y-2 py-1">
-                <label htmlFor="publishedDate">Ngày phát hành</label>
+                <label htmlFor="publishedDate">Năm phát hành</label>
                 <input
                   id="publishedDate"
-                  type="date"
-                  {...register("publishedDate")}
-                  placeholder="VD: Nguyễn Nhật Ánh"
+                  type="text"
+                  {...register("publishedDate", {
+                    pattern: {
+                      value: /^[0-9]*[1-9][0-9]*$/,
+                      message: "Giá trị phải là số dương",
+                    },
+                  })}
+                  placeholder="VD: 2023"
                   className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
+                {errors.publishedDate && (
+                  <span className="text-sm text-red-500">
+                    {errors.publishedDate.message as React.ReactNode}
+                  </span>
+                )}
               </div>
               <div className="space-y-2 py-1">{/*  */}</div>
               <div className="space-y-2 py-1">

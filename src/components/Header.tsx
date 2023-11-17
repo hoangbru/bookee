@@ -283,7 +283,7 @@ export default function Header() {
                           )}
                         </Menu.Item>
                       )}
-                      <Menu.Item>
+                      {user && <Menu.Item>
                         {({ active }: any) => (
                           <Link
                             to={`/user`}
@@ -295,7 +295,7 @@ export default function Header() {
                             Thông tin tài khoản
                           </Link>
                         )}
-                      </Menu.Item>
+                      </Menu.Item>}
                       {user?.information?.role == "USER" && (
                         <Menu.Item>
                           {({ active }: any) => (

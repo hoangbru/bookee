@@ -1,3 +1,4 @@
+import { IProduct } from "./product";
 import { IUser } from "./user";
 
 export interface IOrder {
@@ -7,12 +8,11 @@ export interface IOrder {
   userId?: number;
   fullName?: string;
   email?: string;
+  status?: string;
   phone?: string;
   address?: string;
   amount?: number;
-  quantity?: number;
-  orderDetails: IOrderDetail[];
-  status?: string;
+  orderDetails?: IOrderDetail[];
   user?: IUser;
   createdAt?: Date;
   updatedAt?: Date;
@@ -20,7 +20,9 @@ export interface IOrder {
 
 export interface IOrderDetail {
     id?: number;
-    
+    orderId?: number;
+    bookId?: number;
+    book?: IProduct;
     quantity?: number;
     status?: string;
     createdAt?: Date;

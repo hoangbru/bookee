@@ -1,8 +1,10 @@
+/* eslint-disable no-case-declarations */
 import { useRemoveProductMutation } from "../../api/product";
 import { useRemoveCategoryMutation } from "../../api/category";
 import { useRemoveUserMutation } from "../../api/user";
 import toast from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useUpdateOrderMutation } from "../../api/order";
 
 type TModalConfirm = {
   isOpen: boolean;
@@ -19,12 +21,13 @@ export default function ModalConfirm({
   value,
   type,
 }: TModalConfirm) {
-  const content = "sẽ bị xoá, bạn có chắc chắn?"
+  const content = "sẽ bị xoá, bạn có chắc chắn?";
   const [deleteCategory, { isLoading: isLoadingCategory }] =
     useRemoveCategoryMutation();
   const [deleteProduct, { isLoading: isLoadingProduct }] =
     useRemoveProductMutation();
   const [deleteUser, { isLoading: isLoadingUser }] = useRemoveUserMutation();
+  const [updateOrder, { isLoading: isLoadingOrder }] = useUpdateOrderMutation();
 
   const onHandleConfirm = () => {
     switch (type) {
@@ -61,6 +64,17 @@ export default function ModalConfirm({
             toast.error(res.data.message);
           });
         break;
+      case "order":
+        updateOrder(value)
+          .unwrap()
+          .then((res: any) => {
+            onClose();
+            toast.success(res.message);
+          })
+          .catch((res: any) => {
+            toast.error(res.data.message);
+          });
+        break;
 
       default:
         break;
@@ -71,7 +85,7 @@ export default function ModalConfirm({
     <>
       {isOpen && (
         <div
-        id={`${value.id}`}
+          id={`${value.id}`}
           className="relative z-10"
           aria-labelledby="modal-title"
           role="dialog"
@@ -93,8 +107,8 @@ export default function ModalConfirm({
                         aria-hidden="true"
                       >
                         <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                           d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
                         />
                       </svg>
@@ -116,6 +130,16 @@ export default function ModalConfirm({
                                 return `${value.title} ${content}`;
                               case "user":
                                 return `${value.username} ${content}`;
+                              case "order":
+                                const status =
+                                  value.status == "-1"
+                                    ? "huỷ"
+                                    : value.status == "0"
+                                    ? "chờ xác nhận"
+                                    : value.status == "1"
+                                    ? "đang giao"
+                                    : "đã giao";
+                                return `Đơn ${value.code} sẽ chuyển sang ${status}, bạn có chắc chắn?`;
                               default:
                                 break;
                             }
@@ -131,7 +155,10 @@ export default function ModalConfirm({
                     onClick={onHandleConfirm}
                     className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
                   >
-                    {isLoadingCategory || isLoadingProduct || isLoadingUser ? (
+                    {isLoadingCategory ||
+                    isLoadingProduct ||
+                    isLoadingUser ||
+                    isLoadingOrder ? (
                       <AiOutlineLoading3Quarters
                         className="animate-spin"
                         size={20}

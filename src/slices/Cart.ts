@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IProduct } from '../interfaces/product';
 
 const initialState = {
     items: []
@@ -9,7 +8,7 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<IProduct>) => {
+        add: (state, action: PayloadAction<any>) => {
             const newProduct = action.payload;
             const existProductIndex = state.items.findIndex((item: any) => item.id == newProduct.id);
             if (existProductIndex === -1) {

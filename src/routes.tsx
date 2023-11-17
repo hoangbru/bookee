@@ -19,6 +19,7 @@ import {
   CategoryEdit,
   CategoryList,
   Dashboard,
+  OrderList,
   ProductAdd,
   ProductEdit,
   ProductList,
@@ -68,6 +69,13 @@ export const router = createBrowserRouter([
               { index: true, element: <Navigate to="list" /> },
               { path: "list", element: <CategoryList /> },
               { path: ":id/edit", element: <CategoryEdit /> },
+            ],
+          },
+          {
+            path: "orders",
+            children: [
+              { index: true, element: <Navigate to="list" /> },
+              { path: "list", element: <OrderList /> },
             ],
           },
         ],

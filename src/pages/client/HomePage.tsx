@@ -60,11 +60,11 @@ export default function Home() {
         <div className="pb-80 pt-16 sm:pb-40 sm:pt-24 lg:pb-48 lg:pt-40">
           <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div className="sm:max-w-lg">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                URBAS CORLURAY PACK
+              <h1 className="uppercase leading-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                Mừng ngày nhà giáo chọn quà tri ân 
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-              Urbas Corluray Pack chắc chắn là một lựa chọn hợp lí cho những ai yêu thích thời trang phi giới tính. Hiện bộ sản phẩm đã sẵn sàng trên kệ tại tất cả các cửa hàng trong hệ thống hoặc ngay trên website này, chờ bạn đến COP.
+                Nhân dịp ngày nhà giáo, để tri ân công lao của các nhà giáo, quý khách hàng sẽ được hưởng những ưu đãi đặc biệt, bao gồm giảm giá đặc biệt và quà tặng hấp dẫn. Chúng tôi hy vọng rằng những ưu đãi này sẽ là một cách nhỏ để thể hiện lòng biết ơn và động viên tinh thần cho những người làm nên tương lai.
               </p>
             </div>
             <div>

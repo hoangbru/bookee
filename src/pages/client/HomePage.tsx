@@ -1,59 +1,32 @@
-import {Link} from 'react-router-dom'
-const posts = [
-  {
-    id: 1,
-    title: "URBAS CORLURAY PACK",
-    href: "#",
-    description:
-      "Là bộ sản phẩm thuộc dòng Urbas, Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể hiện cá tính riêng biệt khó trùng lặp.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
-    author: {
-      name: "Takemichi",
-      role: "admin",
-      href: "#",
-      imageUrl:
-        "https://res.cloudinary.com/dxa8ks06k/image/upload/v1687326391/takemichi/behance-circle_gkise5.png",
-    },
-  },
-  {
-    id: 2,
-    title: "'GIẢI PHẪU' GIÀY VULCANIZED",
-    href: "#",
-    description:
-      "Trước khi thực hiện cuộc 'giải phẫu' như tiêu đề của bài viết, chúng tôi nghĩ bạn cần biết rằng những đôi giày Sneaker bạn trên chân mỗi ngày hiện tại đang được chia làm 2 nhóm chính nếu phân loại chúng dựa trên phương pháp sản xuất:",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
-    author: {
-      name: "Hamster",
-      role: "",
-      href: "#",
-      imageUrl:
-        "https://i.pinimg.com/564x/4e/d2/40/4ed240138bd33f4fad1066de6c87d589.jpg",
-    },
-  },
-  {
-    id: 3,
-    title: "SNEAKER FEST VIETNAM VÀ SỰ KẾT HỢP",
-    href: "#",
-    description:
-      "Có mặt tại Sneaker Fest Vietnam 2019, Ananas hân hạnh giới thiệu đến bạn một phát hành mang tên Ananas Peeping Pattas - bản collab giới hạn đặc biệt đánh dấu cho lần đầu hợp tác giữa hai bên. Dáng giày Vulcanized High Top của Ananas được lựa chọn trong thiết kế và cảm hứng bắt nguồn từ linh vật Peeping - đại diện cho tinh thần xuyên suốt 6 năm qua của Sneaker Fest Vietnam, chúng tôi tự tin đây sẽ là sản phẩm đáng mong chờ cho mọi “đầu giày” vào mùa hè 2019 này.",
-    date: "Mar 16, 2020",
-    datetime: "2020-03-16",
-    category: { title: "Marketing", href: "#" },
-    author: {
-      name: "Mugi",
-      role: "Co-Founder / CTO",
-      href: "#",
-      imageUrl:
-        "https://i.pinimg.com/564x/ea/b8/46/eab84665b30d20f407e2202bf5054faa.jpg",
-    },
-  },
-  // More posts...
-];
+import { Link } from "react-router-dom";
+import { IProduct } from "../../interfaces/product";
+import CurrencyFormat from "react-currency-format";
+import { useGetAllProductsQuery } from "../../api/product";
+import { useEffect, useState } from "react";
+
 export default function Home() {
+  const [feedback, setFeedback] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/feedback");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const feedbackData = await response.json();
+        setFeedback(feedbackData);
+      } catch (error: any) {
+        console.error("Error fetching feedback data:", error.message);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const { data: productsApi } = useGetAllProductsQuery(`?item_per_page=4`);
+
   return (
     <>
       <div className="relative overflow-hidden bg-white">
@@ -61,10 +34,14 @@ export default function Home() {
           <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
             <div className="sm:max-w-lg">
               <h1 className="uppercase leading-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Mừng ngày nhà giáo chọn quà tri ân 
+                Mừng ngày nhà giáo chọn quà tri ân
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-                Nhân dịp ngày nhà giáo, để tri ân công lao của các nhà giáo, quý khách hàng sẽ được hưởng những ưu đãi đặc biệt, bao gồm giảm giá đặc biệt và quà tặng hấp dẫn. Chúng tôi hy vọng rằng những ưu đãi này sẽ là một cách nhỏ để thể hiện lòng biết ơn và động viên tinh thần cho những người làm nên tương lai.
+                Nhân dịp ngày nhà giáo, để tri ân công lao của các nhà giáo, quý
+                khách hàng sẽ được hưởng những ưu đãi đặc biệt, bao gồm giảm giá
+                đặc biệt và quà tặng hấp dẫn. Chúng tôi hy vọng rằng những ưu
+                đãi này sẽ là một cách nhỏ để thể hiện lòng biết ơn và động viên
+                tinh thần cho những người làm nên tương lai.
               </p>
             </div>
             <div>
@@ -140,24 +117,62 @@ export default function Home() {
                   className="inline-block rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-center font-medium text-white hover:bg-indigo-700"
                 >
                   Khám phá ngay
-                </Link>  
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div className="bg-white">
+        <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+            Sách mới
+          </h2>
+
+          <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {productsApi?.data.map((product: IProduct) => (
+              <div key={product.id} className="group relative">
+                <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+                  <img
+                    src={product.image}
+                    alt=""
+                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"
+                  />
+                </div>
+                <div className="mt-4 flex justify-between">
+                  <div>
+                    <h3 className="text-sm text-gray-700">
+                      <Link to={`/product/${product.id}`}>
+                        <span aria-hidden="true" className="absolute inset-0" />
+                        {product.title}
+                      </Link>
+                    </h3>
+                  </div>
+                  <p className="text-sm font-medium text-gray-900">
+                    <CurrencyFormat
+                      value={product.price}
+                      displayType={"text"}
+                      thousandSeparator={true}
+                      suffix={" VND"}
+                    />
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="bg-white py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Tin tức & Bài viết
+              Ý kiến & đóng góp
             </h2>
-            {/* <p className="mt-2 text-lg leading-8 text-gray-600">
-              Learn how to grow your business with our expert advice.
-            </p> */}
           </div>
           <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {posts.map((post) => (
+            {feedback.map((post: any) => (
               <article
                 key={post.id}
                 className="flex max-w-xl flex-col items-start justify-between"
@@ -166,12 +181,6 @@ export default function Home() {
                   <time dateTime={post.datetime} className="text-gray-500">
                     {post.date}
                   </time>
-                  <a
-                    href={post.category.href}
-                    className="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-                  >
-                    {post.category.title}
-                  </a>
                 </div>
                 <div className="group relative">
                   <h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">

@@ -63,8 +63,8 @@ const ProductAdd = () => {
             import.meta.env.VITE_SUPABASE_URL
           }/storage/v1/object/public/images/${data.path}`,
           author: value.author,
-          price: Number(value.price),
-          categoryId: Number(value.categoryId),
+          price: value.price,
+          categoryId: value.categoryId,
           publishedDate: value.publishedDate,
         })
           .unwrap()

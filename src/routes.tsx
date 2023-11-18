@@ -16,10 +16,10 @@ import {
   SignupPage,
 } from "./pages/client";
 import {
-  CategoryEdit,
   CategoryList,
   Dashboard,
   OrderList,
+  OrderShow,
   ProductAdd,
   ProductEdit,
   ProductList,
@@ -68,7 +68,6 @@ export const router = createBrowserRouter([
             children: [
               { index: true, element: <Navigate to="list" /> },
               { path: "list", element: <CategoryList /> },
-              { path: ":id/edit", element: <CategoryEdit /> },
             ],
           },
           {
@@ -76,6 +75,7 @@ export const router = createBrowserRouter([
             children: [
               { index: true, element: <Navigate to="list" /> },
               { path: "list", element: <OrderList /> },
+              { path: ":id/show", element: <OrderShow /> },
             ],
           },
         ],

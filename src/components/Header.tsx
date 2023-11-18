@@ -3,7 +3,7 @@ import { Dialog, Popover, Transition, Menu } from "@headlessui/react";
 import {
   HiOutlineShoppingBag,
   HiMenuAlt1,
-  HiOutlineSearch,
+  // HiOutlineSearch,
   HiX,
   HiPlusSm,
   HiMinusSm,
@@ -345,7 +345,7 @@ export default function Header() {
                 </div>
 
                 {/* Search */}
-                <span className="flex lg:ml-6 justify-center items-center">
+                {/* <span className="flex lg:ml-6 justify-center items-center">
                   <Popover className="relative">
                     <Popover.Button className="flex justify-center items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                       <div className="p-2 text-gray-400 hover:text-gray-500">
@@ -380,7 +380,7 @@ export default function Header() {
                       </Popover.Panel>
                     </Transition>
                   </Popover>
-                </span>
+                </span> */}
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">

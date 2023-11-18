@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FormattedDate, FormattedTime, FormattedNumber } from "react-intl";
 import { Link } from "react-router-dom";
 
@@ -34,8 +34,9 @@ const OrderList = () => {
   };
 
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [code, setCode] = useState<string>("");
   const { data: ordersApi, isLoading } = useGetAllOrdersQuery(
-    `?page=${currentPage}`
+    `?code=${code}${currentPage ? `&page=${currentPage}` : ""}`
   );
 
   const [orders, setOrders] = useState(ordersApi);
@@ -77,6 +78,11 @@ const OrderList = () => {
       setCurrentPage(currentPage + 1);
     }
   };
+
+  const onHandleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setCode(e.target.value)
+  };
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -99,7 +105,7 @@ const OrderList = () => {
             <div className="flex items-center py-4">
               <input
                 type="text"
-                name=""
+                onChange={onHandleSearch}
                 id=""
                 className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
                 placeholder="Tìm kiếm theo mã"
@@ -206,47 +212,52 @@ const OrderList = () => {
 
                             <td className="p-4 align-middle">
                               <Link
-                                to={`/order/${item.id}`}
+                                to={`/admin/orders/${item.id}/show`}
                                 className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground hover:bg-gray-200 p-2 h-8 w-8"
                               >
                                 <i className="bx bx-info-circle text-base"></i>
                               </Link>
-                              <select
-                                onChange={(e) => {
-                                  handleOpenModalUpdate({
-                                    ...item,
-                                    status: e.target.value,
-                                  });
-                                }}
-                                id="status"
-                              >
-                                {statusArray.map((value: any) => {
-                                  return (
-                                    <option
-                                      key={value.id}
-                                      value={value.id}
-                                      selected={
-                                        value.id == item?.status ? true : false
-                                      }
-                                      disabled={
-                                        value.id == item?.status ? true : false
-                                      }
-                                    >
-                                      {value.label}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-                              {/* <button className="relative inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground hover:bg-gray-200 p-2 h-8 w-8">
-                                <i className="bx bx-edit text-base"></i>
-                              </button> */}
-                              <ModalConfirm
-                                isOpen={openModalUpdate}
-                                onClose={closeModalUpdate}
-                                title="Cảnh báo"
-                                value={modalData}
-                                type="order"
-                              />
+                              {(item?.status != 2 && item?.status != -1) && (
+                                <>
+                                  <select
+                                    onChange={(e) => {
+                                      handleOpenModalUpdate({
+                                        ...item,
+                                        status: e.target.value,
+                                      });
+                                    }}
+                                    id="status"
+                                  >
+                                    {statusArray.map((value: any) => {
+                                      return (
+                                        <option
+                                          key={value.id}
+                                          value={value.id}
+                                          selected={
+                                            value.id == item?.status
+                                              ? true
+                                              : false
+                                          }
+                                          disabled={
+                                            value.id == item?.status
+                                              ? true
+                                              : false
+                                          }
+                                        >
+                                          {value.label}
+                                        </option>
+                                      );
+                                    })}
+                                  </select>
+                                  <ModalConfirm
+                                    isOpen={openModalUpdate}
+                                    onClose={closeModalUpdate}
+                                    title="Cảnh báo"
+                                    value={modalData}
+                                    type="order"
+                                  />
+                                </>
+                              )}
                             </td>
                           </tr>
                         );

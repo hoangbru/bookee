@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Skeleton } from "antd";
 import { FormattedDate, FormattedNumber } from "react-intl";
 import NoData from "../../../components/NoData";
@@ -22,9 +22,10 @@ const ProductList = () => {
     setOpenModal(false);
   };
 
+  const [search, setSearch] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { data: productsApi, isLoading } = useGetAllProductsQuery(
-    `?page=${currentPage}`
+    `?title=${search}${currentPage ? `&page=${currentPage}` : ""}`
   );
 
   const [products, setProducts] = useState(productsApi);
@@ -67,6 +68,10 @@ const ProductList = () => {
     }
   };
 
+  const onHandleSearch = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearch(e.target.value)
+  };
+
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
@@ -99,7 +104,7 @@ const ProductList = () => {
             <div className="flex items-center py-4">
               <input
                 type="text"
-                name=""
+                onChange={onHandleSearch}
                 id=""
                 className="flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 max-w-sm"
                 placeholder="Tìm kiếm theo tên"

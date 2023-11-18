@@ -26,6 +26,7 @@ import orderApi, { orderReducer } from "../api/order";
 import orderDetailApi, { orderDetailReducer } from "../api/order-detail";
 import userApi, { userReducer } from "../api/user";
 import statisticApi, {statisticReducer} from "../api/statistic";
+import reviewApi, { reviewReducer } from "../api/review";
 
 const persistconfig = {
   key: "root",
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   [orderDetailApi.reducerPath]: orderDetailReducer,
   [userApi.reducerPath]: userReducer,
   [statisticApi.reducerPath]: statisticReducer,
+  [reviewApi.reducerPath] : reviewReducer
 });
 
 const persistedReducer = persistReducer(persistconfig, rootReducer);
@@ -53,7 +55,8 @@ const middleware: Middleware[] = [
   orderApi.middleware,
   orderDetailApi.middleware,
   userApi.middleware,
-  statisticApi.middleware
+  statisticApi.middleware,
+  reviewApi.middleware
 ];
 
 export const store = configureStore({

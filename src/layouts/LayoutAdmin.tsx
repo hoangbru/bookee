@@ -1,6 +1,16 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Menu, Transition } from "@headlessui/react";
+import { Fragment } from "react";
+import toast from "react-hot-toast";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { avatarErr } from "../helpers/onHandleImageErr";
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const LayoutAdmin = () => {
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage?.getItem("user") as string);
   const menu = [
     { label: "Bảng điều khiển", url: "/admin/dashboard", active: true },
     { label: "Danh mục", url: "/admin/categories/list", active: false },
@@ -10,6 +20,12 @@ const LayoutAdmin = () => {
   ];
 
   const path = useLocation();
+
+  const btnLogOut = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+    toast.success("Đăng xuất thành công !");
+  };
 
   return (
     <div>
@@ -33,12 +49,58 @@ const LayoutAdmin = () => {
             })}
           </nav>
           <div className="ml-auto flex items-center space-x-4">
+              <p className="text-sm text-black opacity-font-medium transition-colors hover:opacity-100 text-muted-foreground">{user?.information?.fullName}</p>
             <div className="w-7 h-7 cursor-pointer">
-              <img
-                src="https://cdn0.fahasa.com/media/catalog/product/z/4/z4694823431095_74120414b7aabb0f76acac0c865bc61a.jpg"
-                alt=""
-                className="object-cover object-center rounded-full"
-              />
+              <Menu>
+                <Menu.Button>
+                  <img
+                    src={user?.information?.image}
+                    alt=""
+                    onError={avatarErr}
+                    className="object-cover object-center rounded-full"
+                  />
+                </Menu.Button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    {user?.information?.role == "ADMIN" && (
+                      <Menu.Item>
+                        {({ active }: any) => (
+                          <Link
+                            to={`/`}
+                            className={classNames(
+                              active ? "bg-gray-100" : "",
+                              "block px-4 py-2 text-sm text-gray-700"
+                            )}
+                          >
+                            Trang chủ
+                          </Link>
+                        )}
+                      </Menu.Item>
+                    )}
+                    <Menu.Item>
+                      {({ active }: any) => (
+                        <Menu.Button
+                          onClick={btnLogOut}
+                          className={classNames(
+                            active ? "bg-gray-100 w-full" : "",
+                            "block px-4 py-2 text-sm text-gray-700"
+                          )}
+                        >
+                          Đăng xuất
+                        </Menu.Button>
+                      )}
+                    </Menu.Item>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
             </div>
           </div>
         </div>

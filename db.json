@@ -1,123 +1,46 @@
 {
-  "products": [
-    {
-      "name": "Basas Workaday - High Top",
-      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691317730/portfolio/c8dko9gf4b7g1xcge677.jpg",
-      "price": "650000",
-      "desc": "Black",
-      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas NE,\nOutsole: Rubber",
-      "categoryId": 1,
-      "id": 1
-    },
-    {
-      "name": "BASAS WORKADAY - LOW TOP - REAL TEAL",
-      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691317710/portfolio/m8uzrx9rnotepwommjiy.jpg",
-      "price": "580000",
-      "desc": "Real teal",
-      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas NE,\nOutsole: Rubber",
-      "categoryId": 1,
-      "id": 2
-    },
-    {
-      "name": "VINTAS JAZICO - LOW TOP - ROYAL WHITE",
-      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691322225/portfolio/vcffefwd6rjnuqfdwmar.jpg",
-      "price": "720.000",
-      "desc": "ROYAL WHITE",
-      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Canvas/Leather,\nOutsole: Rubber",
-      "categoryId": 2,
-      "sizeIds": [
-        3,
-        2,
-        1,
-        4,
-        7,
-        8,
-        5,
-        6
-      ],
-      "id": 3
-    },
-    {
-      "name": "URBAS CORLURAY MIX - LOW TOP",
-      "image": "https://res.cloudinary.com/ddbdu6zip/image/upload/v1691337082/portfolio/pexyog6ffvv0qh5gqoyo.jpg",
-      "price": "610000",
-      "desc": "Corluray Mix",
-      "detail": "Gender: Unisex,\nSize run: 35 – 46,\nUpper: Corduroy,\nOutsole: Rubber",
-      "sizeIds": [
-        1,
-        2,
-        3
-      ],
-      "categoryId": 3,
-      "id": 4
-    }
-  ],
-  "categories": [
+  "feedback": [
     {
       "id": 1,
-      "name": "Basas"
-    },
-    {
-      "name": "Vintas",
-      "id": 2
-    },
-    {
-      "name": "Urbas",
-      "id": 3
-    }
-  ],
-  "sizes": [
-    {
-      "id": 1,
-      "size": 36,
-      "inStock": false
+      "title": "URBAS CORLURAY PACK",
+      "href": "#",
+      "description": "Là bộ sản phẩm thuộc dòng Urbas, Corluray Pack đem đến lựa chọn “làm mới mình” với sự kết hợp 5 gam màu mang sắc thu; phù hợp với những người trẻ năng động, mong muốn thể hiện cá tính riêng biệt khó trùng lặp.",
+      "date": "Mar 16, 2020",
+      "datetime": "2020-03-16",
+      "author": {
+        "name": "Takemichi",
+        "role": "admin",
+        "href": "#",
+        "imageUrl": "https://res.cloudinary.com/dxa8ks06k/image/upload/v1687326391/takemichi/behance-circle_gkise5.png"
+      }
     },
     {
       "id": 2,
-      "size": 37,
-      "inStock": true
+      "title": "'GIẢI PHẪU' GIÀY VULCANIZED",
+      "href": "#",
+      "description": "Trước khi thực hiện cuộc 'giải phẫu' như tiêu đề của bài viết, chúng tôi nghĩ bạn cần biết rằng những đôi giày Sneaker bạn trên chân mỗi ngày hiện tại đang được chia làm 2 nhóm chính nếu phân loại chúng dựa trên phương pháp sản xuất",
+      "date": "Mar 16, 2020",
+      "datetime": "2020-03-16",
+      "author": {
+        "name": "Hamster",
+        "role": "",
+        "href": "#",
+        "imageUrl": "https://i.pinimg.com/564x/4e/d2/40/4ed240138bd33f4fad1066de6c87d589.jpg"
+      }
     },
     {
       "id": 3,
-      "size": 38,
-      "inStock": true
-    },
-    {
-      "id": 4,
-      "size": 39,
-      "inStock": true
-    },
-    {
-      "id": 5,
-      "size": 40,
-      "inStock": true
-    },
-    {
-      "id": 6,
-      "size": 41,
-      "inStock": true
-    },
-    {
-      "id": 7,
-      "size": 42,
-      "inStock": true
-    },
-    {
-      "id": 8,
-      "size": 43,
-      "inStock": true
-    }
-  ],
-  "orders": [
-    
-  ],
-  "users": [
-    {
-      "email": "phuongngu@gmail.com",
-      "password": "$2a$10$bXpjwNl6/e2rSDF2/yyjrOal551f2QX5k/XEc3gtjLka99f/wsvei",
-      "username": "phuong ngu",
-      "role": "customer",
-      "id": 1
+      "title": "SNEAKER FEST VIETNAM VÀ SỰ KẾT HỢP",
+      "href": "#",
+      "description": "Có mặt tại Sneaker Fest Vietnam 2019, Ananas hân hạnh giới thiệu đến bạn một phát hành mang tên Ananas Peeping Pattas - bản collab giới hạn đặc biệt đánh dấu cho lần đầu hợp tác giữa hai bên. Dáng giày Vulcanized High Top của Ananas được lựa chọn trong thiết kế và cảm hứng bắt nguồn từ linh vật Peeping - đại diện cho tinh thần xuyên suốt 6 năm qua của Sneaker Fest Vietnam, chúng tôi tự tin đây sẽ là sản phẩm đáng mong chờ cho mọi “đầu giày” vào mùa hè 2019 này.",
+      "date": "Mar 16, 2020",
+      "datetime": "2020-03-16",
+      "author": {
+        "name": "Mugi",
+        "role": "Co-Founder / CTO",
+        "href": "#",
+        "imageUrl": "https://i.pinimg.com/564x/ea/b8/46/eab84665b30d20f407e2202bf5054faa.jpg"
+      }
     }
   ]
 }

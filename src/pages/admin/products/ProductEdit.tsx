@@ -51,13 +51,13 @@ const ProductEdit = () => {
   const onHandleSubmit = async (value: any) => {
     if (!value.image[0]) {
       updateProduct({
-        id: Number(id),
+        id: id,
         title: value.title,
-        image: bookById?.data.image,
+        image: bookById?.data.image ? bookById?.data.image : "",
         author: value.author,
-        price: Number(value.price),
-        categoryId: Number(value.categoryId),
-        publishedDate: value.publishedDate
+        price: value.price,
+        categoryId: value.categoryId,
+        publishedDate: value.publishedDate,
       })
         .unwrap()
         .then((response: any) => {
@@ -82,15 +82,15 @@ const ProductEdit = () => {
       if (data) {
         setLoadingImage(false);
         updateProduct({
-          id: Number(id),
+          id: id,
           title: value.title,
           image: `${
             import.meta.env.VITE_SUPABASE_URL
           }/storage/v1/object/public/images/${data.path}`,
           author: value.author,
-          price: Number(value.price),
-          categoryId: Number(value.categoryId),
-          publishedDate: value.publishedDate
+          price: value.price,
+          categoryId: value.categoryId,
+          publishedDate: value.publishedDate,
         })
           .unwrap()
           .then((response: any) => {

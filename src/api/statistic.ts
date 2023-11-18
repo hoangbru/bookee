@@ -12,16 +12,20 @@ const statisticApi = createApi({
       providesTags: ["Statistic"],
     }),
     getTotalRevenue: builder.query<any, void>({
-        query: () => `statistics/total-revenue`,
-        providesTags: ["Statistic"],
-      }),
-      getOrderCount: builder.query<any, string>({
-        query: (params) => `statistics/order-count${params}`,
-        providesTags: ["Statistic"],
-      }),
+      query: () => `statistics/total-revenue`,
+      providesTags: ["Statistic"],
+    }),
+    getOrderCount: builder.query<any, string>({
+      query: (params) => `statistics/order-count${params}`,
+      providesTags: ["Statistic"],
+    }),
   }),
 });
 
-export const { useGetGraphRevenueQuery, useGetTotalRevenueQuery, useGetOrderCountQuery } = statisticApi;
+export const {
+  useGetGraphRevenueQuery,
+  useGetTotalRevenueQuery,
+  useGetOrderCountQuery,
+} = statisticApi;
 export const statisticReducer = statisticApi.reducer;
 export default statisticApi;

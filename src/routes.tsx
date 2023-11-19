@@ -23,6 +23,8 @@ import {
   ProductAdd,
   ProductEdit,
   ProductList,
+  UserList,
+  UserShow,
 } from "./pages/admin";
 import { PrivateRoute } from "./helpers/protectionRoute";
 
@@ -76,6 +78,14 @@ export const router = createBrowserRouter([
               { index: true, element: <Navigate to="list" /> },
               { path: "list", element: <OrderList /> },
               { path: ":id/show", element: <OrderShow /> },
+            ],
+          },
+          {
+            path: "users",
+            children: [
+              { index: true, element: <Navigate to="list" /> },
+              { path: "list", element: <UserList /> },
+              { path: ":id/show", element: <UserShow /> },
             ],
           },
         ],

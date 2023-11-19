@@ -12,6 +12,10 @@ import CategoryList from "./categories/CategoryList";
 import OrderList from "./orders/OrderList";
 import OrderShow from "./orders/OrderShow";
 
+// users
+import UserList from "./users/UserList";
+import UserShow from "./users/UserShow";
+
 export {
   Dashboard,
   ProductAdd,
@@ -19,5 +23,7 @@ export {
   ProductEdit,
   CategoryList,
   OrderList,
-  OrderShow
+  OrderShow,
+  UserList,
+  UserShow
 };

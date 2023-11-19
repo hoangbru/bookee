@@ -44,4 +44,8 @@ pnpm dev
 npm run dev
 ```
 
+- Account: 
+email: admin@gmail.com,
+password: 1
+
 Now the project is running on port 5173 (http://localhost:5173).

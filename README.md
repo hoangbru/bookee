@@ -1,27 +1,47 @@
-# React + TypeScript + Vite
+## This is a book-selling web project implemented by Pham Viet Hoang(PH21107), use pnpm as the package management tool
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Main Technologies
 
-Currently, two official plugins are available:
+- React, Tailwind CSS, Antd.
+- Redux Toolkit.
+- Supabase.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+- Clone the Project:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+git clone https://github.com/hoangbru/bookee.git
+```
+- Access the project on your local machine:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+cd bookee
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Install all packages:
+
+```bash
+pnpm i
+# or
+npm i
+```
+
+- Create .env file:
+```bash
+VITE_BASE_URL_API="http://localhost:8080/api/"
+
+VITE_SUPABASE_URL="https://dzjnhjzivoneaxcgrmfb.supabase.co"
+VITE_SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6am5oanppdm9uZWF4Y2dybWZiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTYxNTQzOTgsImV4cCI6MjAxMTczMDM5OH0._8cyYxzE0-5lMWLfogO_RPCQHRSNcfJczuWvJqzbS54"
+```
+## Run project
+
+- You need my folder API: (https://github.com/hoangbru/bookee-api)
+
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+Now the project is running on port 5173 (http://localhost:5173).

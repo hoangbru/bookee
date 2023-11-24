@@ -20,13 +20,7 @@ export default function SigninPage() {
       .then((res: any) => {
         toast.success(res.message);
         localStorage.setItem("user", JSON.stringify(res.data));
-        if(res.data.information.role == "ADMIN") {
-          setTimeout(() => {
-            navigate("/admin");
-          },1000)
-        } else {
-          navigate("/");
-        }
+        navigate("/");
       })
       .catch((res: any) => {
         toast.error(res.data.message);

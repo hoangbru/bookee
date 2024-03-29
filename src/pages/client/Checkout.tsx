@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import * as CurrencyFormat from "react-currency-format";
 import { HiOutlineTrash } from "react-icons/hi";
 import { TiTickOutline } from "react-icons/ti";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -12,6 +11,7 @@ import { remove, clear } from "../../slices/Cart";
 import { useGetUserByIdQuery } from "../../api/user";
 import { useAddOrderMutation } from "../../api/order";
 import { useAddOrderDetailMutation } from "../../api/order-detail";
+import { FormattedNumber } from "react-intl";
 
 export default function Checkout() {
   const user = JSON.parse(localStorage?.getItem("user") as string);
@@ -256,11 +256,10 @@ export default function Checkout() {
                                       </p>
 
                                       <p className="flex text-sm py-1">
-                                        <CurrencyFormat
+                                        <FormattedNumber
                                           value={item?.price}
-                                          displayType={"text"}
-                                          thousandSeparator={true}
-                                          suffix={" VND"}
+                                          style="currency"
+                                          currency="VND"
                                         />
                                       </p>
                                       <p className="flex text-sm py-1 text-gray-700">
@@ -292,11 +291,10 @@ export default function Checkout() {
                   <div className="flex justify-between border-b border-gray-900/10 py-4">
                     <p className="text-base font-semibold">Total:</p>
                     <p>
-                      <CurrencyFormat
+                      <FormattedNumber
                         value={total}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        suffix={" VND"}
+                        style="currency"
+                        currency="VND"
                       />
                     </p>
                   </div>

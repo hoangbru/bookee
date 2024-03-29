@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { IProduct } from "../../interfaces/product";
-import CurrencyFormat from "react-currency-format";
 import { useGetAllProductsQuery } from "../../api/product";
 import { useEffect, useState } from "react";
+import { FormattedNumber } from "react-intl";
 
 export default function Home() {
   const [feedback, setFeedback] = useState<any[]>([]);
@@ -150,11 +150,10 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-sm font-medium text-gray-900">
-                    <CurrencyFormat
+                    <FormattedNumber
                       value={product.price}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      suffix={" VND"}
+                      style="currency"
+                      currency="VND"
                     />
                   </p>
                 </div>

@@ -11,9 +11,9 @@ import {
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import { decrease, increase, remove } from "../slices/Cart";
-import * as CurrencyFormat from "react-currency-format";
 import { toast } from "react-hot-toast";
 import { avatarErr } from "../helpers/onHandleImageErr";
+import { FormattedNumber } from "react-intl";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -122,14 +122,25 @@ export default function Header() {
                           Thông tin tài khoản
                         </Link>
                       </div>
-                      <div className="flow-root pl-6">
-                        <Link
-                          to="/myorder"
-                          className="-m-2 block text-sm text-gray-900"
-                        >
-                          Đơn hàng của tôi
-                        </Link>
-                      </div>
+                      {user?.information?.role == "ADMIN" ? (
+                        <div className="flow-root pl-6">
+                          <Link
+                            to="/admin"
+                            className="-m-2 block text-sm text-gray-900"
+                          >
+                            Trang quản trị
+                          </Link>
+                        </div>
+                      ) : (
+                        <div className="flow-root pl-6">
+                          <Link
+                            to="/myorder"
+                            className="-m-2 block text-sm text-gray-900"
+                          >
+                            Đơn hàng của tôi
+                          </Link>
+                        </div>
+                      )}
                       <div className="flow-root">
                         <button
                           onClick={btnLogOut}
@@ -161,7 +172,7 @@ export default function Header() {
                   )}
                 </div>
 
-                <div className="border-t border-gray-200 px-4 py-6">
+                {/* <div className="border-t border-gray-200 px-4 py-6">
                   <a href="#" className="-m-2 flex items-center p-2">
                     <img
                       src="https://i.pinimg.com/564x/2a/cb/7d/2acb7d9371550e4f145d5a1a841a41cb.jpg"
@@ -173,7 +184,7 @@ export default function Header() {
                     </span>
                     <span className="sr-only">, change currency</span>
                   </a>
-                </div>
+                </div> */}
               </Dialog.Panel>
             </Transition.Child>
           </div>
@@ -283,19 +294,21 @@ export default function Header() {
                           )}
                         </Menu.Item>
                       )}
-                      {user && <Menu.Item>
-                        {({ active }: any) => (
-                          <Link
-                            to={`/user`}
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Thông tin tài khoản
-                          </Link>
-                        )}
-                      </Menu.Item>}
+                      {user && (
+                        <Menu.Item>
+                          {({ active }: any) => (
+                            <Link
+                              to={`/user`}
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Thông tin tài khoản
+                            </Link>
+                          )}
+                        </Menu.Item>
+                      )}
                       {user?.information?.role == "USER" && (
                         <Menu.Item>
                           {({ active }: any) => (
@@ -493,14 +506,13 @@ export default function Header() {
                                                 </Link>
                                               </h3>
                                               <p className="ml-4">
-                                                <CurrencyFormat
+                                                <FormattedNumber
                                                   value={
                                                     product.price *
                                                     product.quantity
                                                   }
-                                                  displayType={"text"}
-                                                  thousandSeparator={true}
-                                                  suffix={" VND"}
+                                                  style="currency"
+                                                  currency="VND"
                                                 />
                                               </p>
                                             </div>
@@ -575,11 +587,10 @@ export default function Header() {
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <p>Tổng giá</p>
                                 <p>
-                                  <CurrencyFormat
+                                  <FormattedNumber
                                     value={total}
-                                    displayType={"text"}
-                                    thousandSeparator={true}
-                                    suffix={" VND"}
+                                    style="currency"
+                                    currency="VND"
                                   />
                                 </p>
                               </div>

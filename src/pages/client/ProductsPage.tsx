@@ -5,7 +5,6 @@ import { HiX, HiFilter, HiArrowSmLeft, HiArrowSmRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { HiOutlineEye, HiOutlineShoppingCart } from "react-icons/hi";
-import * as CurrencyFormat from "react-currency-format";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -21,6 +20,7 @@ import NoData from "../../components/NoData";
 import { IProduct } from "../../interfaces/product";
 import { useAppDispatch } from "../../store/hook";
 import { add } from "../../slices/Cart";
+import { FormattedNumber } from "react-intl";
 
 const ProductsPage = () => {
   const dispatch = useAppDispatch();
@@ -279,9 +279,11 @@ const ProductsPage = () => {
                           <button
                             onClick={onHandleNextClick}
                             disabled={currentPage == totalPages}
-                            className={`${currentPage == totalPages
-                              ? "cursor-not-allowed opacity-50"
-                              : ""} relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
+                            className={`${
+                              currentPage == totalPages
+                                ? "cursor-not-allowed opacity-50"
+                                : ""
+                            } relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 hover:bg-gray-50 focus:z-20 focus:outline-offset-0`}
                           >
                             <span className="sr-only">Sau</span>
                             <HiArrowSmRight
@@ -369,11 +371,10 @@ const ProductsPage = () => {
                               </h3>
                             </div>
                             <p className="text-sm font-medium text-gray-900">
-                              <CurrencyFormat
+                              <FormattedNumber
                                 value={product?.price}
-                                displayType={"text"}
-                                thousandSeparator={true}
-                                suffix={" VND"}
+                                style="currency"
+                                currency="VND"
                               />
                             </p>
                           </div>

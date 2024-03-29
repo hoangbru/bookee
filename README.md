@@ -31,6 +31,8 @@ pnpm i
 - Create .env file:
 ```bash
 VITE_BASE_URL_API=""
+VITE_SUPABASE_URL=""
+VITE_SUPABASE_KEY=""
 ```
 ## Run project
 

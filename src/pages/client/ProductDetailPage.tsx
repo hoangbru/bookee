@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import * as CurrencyFormat from "react-currency-format";
 
 import { toast } from "react-hot-toast";
 import { HiStar } from "react-icons/hi";
@@ -109,11 +108,10 @@ const ProductDetailPage = () => {
                 {isLoadingProduct ? (
                   <Skeleton />
                 ) : (
-                  <CurrencyFormat
+                  <FormattedNumber
                     value={product?.data?.price}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    suffix={" VND"}
+                    style="currency"
+                    currency="VND"
                   />
                 )}
               </p>

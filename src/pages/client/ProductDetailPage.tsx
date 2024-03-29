@@ -11,7 +11,7 @@ import { add } from "../../slices/Cart";
 
 import { useGetProductByIdQuery } from "../../api/product";
 import { avatarErr } from "../../helpers/onHandleImageErr";
-import { FormattedDate, FormattedTime } from "react-intl";
+import { FormattedDate, FormattedNumber, FormattedTime } from "react-intl";
 
 import ModalReview from "../../components/client/ModalReview";
 import { useEffect, useState } from "react";
@@ -109,7 +109,7 @@ const ProductDetailPage = () => {
                   <Skeleton />
                 ) : (
                   <FormattedNumber
-                    value={product?.data?.price}
+                    value={product?.data?.price || 0}
                     style="currency"
                     currency="VND"
                   />

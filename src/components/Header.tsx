@@ -42,7 +42,7 @@ export default function Header() {
 
   const btnLogOut = () => {
     localStorage.removeItem("user");
-    window.location.reload();
+    window.location.href = "/";
     toast.success("Đăng xuất thành công !");
   };
 

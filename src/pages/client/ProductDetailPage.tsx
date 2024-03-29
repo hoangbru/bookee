@@ -28,7 +28,7 @@ function classNames(...classes: string[]) {
 const ProductDetailPage = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  const { data: product, isLoading: isLoadingProduct } = useGetProductByIdQuery(
+  const { data: product, isLoading: isLoadingProduct, refetch } = useGetProductByIdQuery(
     id || ""
   );
 
@@ -83,7 +83,8 @@ const ProductDetailPage = () => {
       .unwrap()
       .then((res: any) => {
         handleCancelUpdate();
-        window.location.reload();
+        // window.location.href = "/";
+        refetch()
         toast.success(res.message);
       })
       .catch((res: any) => {
@@ -215,6 +216,7 @@ const ProductDetailPage = () => {
                 <i className="bx bx-pencil"></i>
               </button>
               <ModalReview
+                refetch={refetch}
                 isOpen={openModal}
                 onClose={closeModal}
                 value={modalData}

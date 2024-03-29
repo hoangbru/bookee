@@ -9,9 +9,10 @@ type TModalReview = {
   isOpen: boolean;
   onClose: () => void;
   value: any;
+  refetch: () => void;
 };
 
-const ModalReview: FC<TModalReview> = ({ isOpen, onClose, value }) => {
+const ModalReview: FC<TModalReview> = ({ isOpen, onClose, value, refetch }) => {
   const user = JSON.parse(localStorage?.getItem("user") as string);
 
   const { handleSubmit, register, reset, setValue } = useForm();
@@ -43,7 +44,8 @@ const ModalReview: FC<TModalReview> = ({ isOpen, onClose, value }) => {
       .then((res: any) => {
         onClose();
         reset();
-        window.location.reload();
+        refetch()
+        // window.location.reload();
         toast.success(res.message);
       })
       .catch((res: any) => {

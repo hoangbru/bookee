@@ -5,25 +5,42 @@ import { useEffect, useState } from "react";
 import { FormattedNumber } from "react-intl";
 
 export default function Home() {
-  const [feedback, setFeedback] = useState<any[]>([]);
+  const [feedback, setFeedback] = useState<any[]>([
+    {
+      id: 1,
+      description: "Mô tả chi tiết cùng với đánh giá từ người đọc khác đã giúp tôi có cái nhìn tổng quan về nội dung của từng cuốn sách. Những ý kiến này rất hữu ích khi tôi đang tìm kiếm thông tin để quyết định mua. Điều này chứng tỏ trang web của bạn không chỉ chú trọng đến việc cung cấp sách mới mà còn đảm bảo rằng khách hàng có đủ thông tin để đưa ra quyết định đúng đắn.",
+      date: "05 Tháng 05, 2023",
+      datetime: "2020-03-16",
+      author: {
+        name: "Takemichi",
+        imageUrl: "https://res.cloudinary.com/dxa8ks06k/image/upload/v1687326391/takemichi/behance-circle_gkise5.png"
+      }
+    },
+    {
+      id: 2,
+      description: "Tôi đánh giá cao sự nhanh chóng và thân thiện của dịch vụ khách hàng. Mỗi khi có thắc mắc, tôi luôn nhận được sự hỗ trợ chuyên nghiệp từ đội ngũ của bạn. Quá trình thanh toán và xử lý đơn hàng cũng diễn ra suôn sẻ, giúp tôi tiết kiệm thời gian và trải nghiệm mua sắm sách trở nên thoải mái hơn.",
+      date: "13 Tháng 11, 2023",
+      datetime: "2020-03-16",
+      author: {
+        name: "Hamster",
+        imageUrl: "https://i.pinimg.com/564x/4e/d2/40/4ed240138bd33f4fad1066de6c87d589.jpg"
+      }
+    },
+    {
+      id: 3,
+      description: "Trang web bán sách của bạn thật sự ấn tượng với sự đa dạng và độ mới lạ của bộ sưu tập sách. Tôi rất hạnh phúc khi phát hiện ra những tác phẩm mới và không tưởng, điều này tạo nên một trải nghiệm mua sắm sách thú vị. Sự chọn lọc cẩn thận của các tựa sách mới càng làm tăng giá trị của trang web.",
+      date: "16 Tháng 3, 2023",
+      datetime: "2020-03-16",
+      author: {
+        name: "Mugi",
+        imageUrl: "https://i.pinimg.com/564x/ea/b8/46/eab84665b30d20f407e2202bf5054faa.jpg"
+      }
+    }
+  ]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/feedback");
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const feedbackData = await response.json();
-        setFeedback(feedbackData);
-      } catch (error: any) {
-        console.error("Error fetching feedback data:", error.message);
-      }
-    };
-
-    fetchData();
-  }, []);
+    setFeedback(feedback)
+  }, [feedback]);
 
   const { data: productsApi } = useGetAllProductsQuery(`?item_per_page=4`);
 
